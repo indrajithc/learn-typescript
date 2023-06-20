@@ -10,3 +10,5 @@ Core Types
   - fixed length and fixed type
 - Enum: enum { NEW, OLD}
 - Any : \* can store any type
+- union types join with |
+- Literal type
