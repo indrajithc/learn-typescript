@@ -16,9 +16,10 @@ printResult(add(5, 12));
 
 // let someValue: undefined;
 
-let combineValue;
+let combineValue: Function;
 combineValue = add;
+combineValue = printResult;
 // is an error to fix this
-combineValue = 5;
+// combineValue = 5;
 
 console.log(combineValue(8, 8));
