@@ -12,3 +12,8 @@ Core Types
 - Any : \* can store any type
 - union types join with |
 - Literal type
+
+Type Aliases / Custom Types
+
+type Combinable = number | string;
+with union type
