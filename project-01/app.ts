@@ -12,6 +12,11 @@ function printResult(num: number): void {
 //   return;
 // }
 
+function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
+  const result = n1 + n2;
+  cb(result);
+}
+
 printResult(add(5, 12));
 
 // let someValue: undefined;
@@ -24,3 +29,7 @@ combineValue = add;
 // combineValue = 5;
 
 console.log(combineValue(8, 8));
+
+addAndHandle(1, 3, (result) => {
+  console.log(result);
+});
