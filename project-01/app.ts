@@ -15,3 +15,10 @@ function printResult(num: number): void {
 printResult(add(5, 12));
 
 // let someValue: undefined;
+
+let combineValue;
+combineValue = add;
+// is an error to fix this
+combineValue = 5;
+
+console.log(combineValue(8, 8));
