@@ -7,7 +7,8 @@ function add(n1: number, n2: number, showResult: boolean, phrase: string) {
   }
 }
 
-const number1 = "5";
+let number1: number;
+number1 = 4;
 const number2 = 2.5;
 const printResult = true;
 const parsePhrase = "Result is: ";
