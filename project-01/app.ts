@@ -1,12 +1,21 @@
 const person: {
   name: string;
   age: number;
+  hobbies: string[];
 } = {
   name: "Indran",
   age: 27,
+  hobbies: ["Sports", "Cooking"],
 };
 
-console.log(person);
+// any type
+let favoriteActivities: any[];
+favoriteActivities = ["Sports", 23];
+
+for (const hobby of person.hobbies) {
+  // no error on to upper case because its type of array
+  console.log(hobby.toUpperCase());
+}
 
 // for a nested object
 
