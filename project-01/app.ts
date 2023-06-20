@@ -19,7 +19,7 @@ printResult(add(5, 12));
 let combineValue: (a: number, b: number) => number;
 
 combineValue = add;
-combineValue = printResult;
+// combineValue = printResult;
 // is an error to fix this
 // combineValue = 5;
 
