@@ -9,3 +9,4 @@ Core Types
 - Tuple : [1,2]
   - fixed length and fixed type
 - Enum: enum { NEW, OLD}
+- Any : \* can store any type

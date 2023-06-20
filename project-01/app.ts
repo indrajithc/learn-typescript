@@ -17,7 +17,7 @@ const person: {
   role: Role.ADMIN,
 };
 
-// any type
+// any type [should avoid]
 let favoriteActivities: any[];
 favoriteActivities = ["Sports", 23];
 
