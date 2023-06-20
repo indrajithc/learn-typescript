@@ -16,7 +16,8 @@ printResult(add(5, 12));
 
 // let someValue: undefined;
 
-let combineValue: Function;
+let combineValue: (a: number, b: number) => number;
+
 combineValue = add;
 combineValue = printResult;
 // is an error to fix this
