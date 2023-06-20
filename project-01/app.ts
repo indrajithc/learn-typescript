@@ -2,11 +2,23 @@ const person: {
   name: string;
   age: number;
   hobbies: string[];
+  // marks as a tuple
+  role: [number, string];
 } = {
   name: "Indran",
   age: 27,
   hobbies: ["Sports", "Cooking"],
+  role: [1, "author"],
 };
+
+// push exception of ts
+person.role.push("admin");
+
+// error not a string
+// person.role[1] = 10;
+
+// Error assignment shows error but not push
+// person.role = [0, "admin", "user"];
 
 // any type
 let favoriteActivities: any[];

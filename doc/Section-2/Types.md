@@ -6,3 +6,5 @@ Core Types
 - boolean
 - Object {age:30}
 - Array [any, any]
+- Tuple : [1,2]
+  - fixed length and fixed type
