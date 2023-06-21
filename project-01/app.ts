@@ -44,4 +44,6 @@ console.log({ addNumbers });
 const [hobby1, hobby2, ...remailingHobbies] = hobbies;
 console.log(hobbies, hobby1, hobby2);
 
-const { firstName, age } = person;
+const { firstName: userName, age } = person;
+
+console.log({ userName, age });
