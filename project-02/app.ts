@@ -1,7 +1,8 @@
 class Department {
+  // private readonly id: string;
   private employees: string[] = [];
 
-  constructor(private id: string, public name: string) {
+  constructor(private readonly id: string, public name: string) {
     this.id = id;
     this.name = name;
   }
@@ -12,6 +13,7 @@ class Department {
   }
 
   addEmployee(employee: string) {
+    // this.id = "d3"; // error case read only value
     this.employees.push(employee);
   }
 
