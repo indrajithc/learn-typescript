@@ -25,5 +25,8 @@ const accounting = new Department("Accounting");
 accounting.addEmployee("Max");
 accounting.addEmployee("Man");
 
+// issue case
+accounting.employees[2] = "Ann";
+
 accounting.describe();
 accounting.printEmployeeInformation();
