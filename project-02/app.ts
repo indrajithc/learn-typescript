@@ -10,6 +10,11 @@ class Department {
   }
 }
 
-const account = new Department("Accounting");
+const accounting = new Department("Accounting");
 
-account.describe();
+accounting.describe();
+
+// error case
+// const accountingCopy = { describe: accounting.describe };
+// accountingCopy.describe();
+// // Department: undefined
