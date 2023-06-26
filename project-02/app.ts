@@ -5,7 +5,7 @@ class Department {
     this.name = n;
   }
 
-  describe() {
+  describe(this: Department) {
     console.log("Department: " + this.name);
   }
 }
@@ -14,7 +14,5 @@ const accounting = new Department("Accounting");
 
 accounting.describe();
 
-// error case
-// const accountingCopy = { describe: accounting.describe };
-// accountingCopy.describe();
-// // Department: undefined
+const accountingCopy = { name: "Dummy", describe: accounting.describe };
+accountingCopy.describe();
