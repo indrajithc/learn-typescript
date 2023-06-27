@@ -64,7 +64,19 @@ class AccountingDepartment extends Department {
     this.reports.push(text);
     this.latestReport = text;
   }
+
+  printReports() {
+    console.log(this.reports);
+  }
 }
 
 const accounting = new AccountingDepartment("d3", []);
 console.log(accounting.mostRecentReport);
+
+accounting.addReport("Something went wrong...");
+
+accounting.addEmployee("Max");
+accounting.addEmployee("Manu");
+
+accounting.printReports();
+accounting.printEmployeeInformation();
