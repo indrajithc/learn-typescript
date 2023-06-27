@@ -8,8 +8,7 @@ class Department {
   }
 
   describe(this: Department) {
-    console.log("Department id: " + this.id);
-    console.log("Department: " + this.name);
+    console.log("Department " + this.id + ": " + this.name);
   }
 
   addEmployee(employee: string) {
