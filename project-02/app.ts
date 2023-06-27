@@ -3,7 +3,7 @@
  */
 
 interface Greetable {
-  name: string;
+  readonly name: string;
 
   greet(phrase: string): void;
 }
@@ -22,5 +22,8 @@ class Person implements Greetable {
 let user1: Greetable;
 
 user1 = new Person("Max");
+
+// // read only error
+// user1.name = "New";
 
 user1.greet("Hi");
