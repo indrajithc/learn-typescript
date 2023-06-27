@@ -71,9 +71,10 @@ class AccountingDepartment extends Department {
 }
 
 const accounting = new AccountingDepartment("d3", []);
-console.log(accounting.mostRecentReport);
 
 accounting.addReport("Something went wrong...");
+
+console.log(accounting.mostRecentReport);
 
 accounting.addEmployee("Max");
 accounting.addEmployee("Manu");
