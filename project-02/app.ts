@@ -38,13 +38,33 @@ class ITDepartment extends Department {
   }
 }
 
-const accounting = new ITDepartment("id1", ["Max"]);
+class AccountingDepartment extends Department {
+  private latestReport: string;
 
-accounting.addEmployee("Max");
-accounting.addEmployee("Man");
+  get mostRecentReport() {
+    if (this.latestReport) {
+      return this.latestReport;
+    }
+    throw new Error("No latest report found");
+  }
 
-// issue case private variable
-// accounting.employees[2] = "Ann";
+  constructor(id: string, private reports: string[]) {
+    super(id, "Accounting");
+    this.latestReport = reports[0];
+  }
 
-accounting.describe();
-accounting.printEmployeeInformation();
+  addEmployee(name: string): void {
+    if (name === "Max") {
+      return;
+    }
+    this.employees.push(name);
+  }
+
+  addReport(text: string) {
+    this.reports.push(text);
+    this.latestReport = text;
+  }
+}
+
+const accounting = new AccountingDepartment("d3", []);
+console.log(accounting.mostRecentReport);
