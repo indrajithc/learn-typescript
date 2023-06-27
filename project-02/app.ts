@@ -22,7 +22,14 @@ class Department {
   }
 }
 
-const accounting = new Department("id1", "Accounting");
+class ITDepartment extends Department {
+  constructor(id: string, public admins: string[]) {
+    super(id, "IT");
+    this.admins = admins;
+  }
+}
+
+const accounting = new ITDepartment("id1", ["Max"]);
 
 accounting.addEmployee("Max");
 accounting.addEmployee("Man");
