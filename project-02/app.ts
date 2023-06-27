@@ -1,4 +1,4 @@
-class Department {
+abstract class Department {
   // private readonly id: string;
   protected employees: string[] = [];
   static fiscalYear = 2020;
@@ -12,10 +12,7 @@ class Department {
     return { name };
   }
 
-  describe(this: Department) {
-    console.log("Department " + this.id + ": " + this.name);
-    console.log("Year " + Department.fiscalYear);
-  }
+  abstract describe(this: Department): void;
 
   addEmployee(employee: string) {
     // this.id = "d3"; // error case read only value
@@ -41,6 +38,10 @@ class ITDepartment extends Department {
 
   printReports() {
     console.log(this.reports);
+  }
+
+  describe(): void {
+    console.log("Accounting Department - ID: " + this.id);
   }
 }
 
