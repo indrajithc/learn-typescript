@@ -23,9 +23,18 @@ class Department {
 }
 
 class ITDepartment extends Department {
+  private reports: string[] = [];
   constructor(id: string, public admins: string[]) {
     super(id, "IT");
     this.admins = admins;
+  }
+
+  addReports(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log(this.reports);
   }
 }
 
