@@ -14,6 +14,7 @@ class Department {
 
   describe(this: Department) {
     console.log("Department " + this.id + ": " + this.name);
+    console.log("Year " + Department.fiscalYear);
   }
 
   addEmployee(employee: string) {
