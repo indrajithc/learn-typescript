@@ -7,6 +7,10 @@ class Department {
     this.name = name;
   }
 
+  static createEmployee(name: string) {
+    return { name };
+  }
+
   describe(this: Department) {
     console.log("Department " + this.id + ": " + this.name);
   }
@@ -79,7 +83,7 @@ class AccountingDepartment extends Department {
 
 const accounting = new AccountingDepartment("d3", []);
 
-accounting.mostRecentReport = "Valid value";
+accounting.mostRecentReport = "Valid";
 
 console.log(accounting.mostRecentReport);
 accounting.addReport("Something went wrong...");
@@ -89,3 +93,6 @@ accounting.addEmployee("Manu");
 
 accounting.printReports();
 accounting.printEmployeeInformation();
+
+const employee1 = Department.createEmployee("Max");
+console.log({ employee1 });
