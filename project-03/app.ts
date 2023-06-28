@@ -49,6 +49,12 @@ const fetchUserData = {
 // optional chaining
 console.log(fetchUserData?.job?.title);
 
+const userInput = "";
+
+const storedData = userInput || "DEFAULT";
+
+console.log(storedData);
+
 // console.log(add(23, 44));
 
 // type UnknownEmployee = Employee | Admin;
