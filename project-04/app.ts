@@ -45,3 +45,41 @@ function extractAndConvert<T extends object, U extends keyof T>(
 }
 
 extractAndConvert({ name: "Max" }, "name");
+
+class DataStorage<T> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
+  }
+
+  removeItem(item: T) {
+    if (this.data.indexOf(item) > -1) {
+      this.data.splice(this.data.indexOf(item), 1);
+    }
+  }
+
+  getItems() {
+    return [...this.data];
+  }
+}
+
+const textStorage = new DataStorage<string>();
+
+textStorage.addItem("Max");
+textStorage.addItem("Max");
+textStorage.addItem("Max");
+textStorage.removeItem("Max");
+
+const numberStorage = new DataStorage<number>();
+
+const objStorage = new DataStorage<object>();
+
+const maxData = { name: "Max" };
+
+objStorage.addItem({ name: "Nmae" });
+objStorage.addItem(maxData);
+
+objStorage.removeItem(maxData);
+
+console.log(objStorage.getItems());
