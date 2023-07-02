@@ -43,11 +43,36 @@ function Log(_: any, propertyName: any) {
   console.log(propertyName);
 }
 
+function Log2(target: any, t: any) {
+  const { name, description } = t;
+  console.log("Accessor decorator!");
+  console.log(target);
+  console.log(name);
+  console.log(description);
+}
+
+function Log3(target: any, t: any) {
+  const { name, description } = t;
+  console.log({ t });
+  console.log("Method decorator!");
+  console.log(target);
+  console.log(name);
+  console.log(description);
+}
+
+function Log4(target: any, t: any) {
+  const { name, position } = t;
+  console.log("Method decorator!");
+  console.log(target);
+  console.log(name);
+  console.log(position);
+}
 class Product {
   @Log
   title: string;
   private _price: number;
 
+  @Log2
   set price(val: number) {
     if (val > 0) {
       this._price = val;
@@ -61,6 +86,7 @@ class Product {
     this._price = p;
   }
 
+  @Log3
   getPriceWithTax(tax: number) {
     return this._price * (1 + tax);
   }
