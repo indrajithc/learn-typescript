@@ -7,7 +7,17 @@ function Logger(logString: string) {
   };
 }
 
-@Logger("LOGGING - PERSON")
+function WithTemplate(template: string, hookId: string) {
+  return function (_: Function, __: object) {
+    const hookEl = document.getElementById(hookId);
+    if (hookEl) {
+      hookEl.innerHTML = template;
+    }
+  };
+}
+
+// @Logger("LOGGING - PERSON")
+@WithTemplate("<h1>My Person Object</h2>", "app")
 class Person {
   name = "Max";
 
