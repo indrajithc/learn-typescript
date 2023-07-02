@@ -8,10 +8,13 @@ function Logger(logString: string) {
 }
 
 function WithTemplate(template: string, hookId: string) {
-  return function (_: Function, __: object) {
+  return function (constructor: any, _: object) {
     const hookEl = document.getElementById(hookId);
+    console.log(constructor);
+    const p = new constructor();
     if (hookEl) {
       hookEl.innerHTML = template;
+      hookEl.querySelector("h1")!.textContent = p.name;
     }
   };
 }
