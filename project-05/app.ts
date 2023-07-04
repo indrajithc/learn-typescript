@@ -101,3 +101,16 @@ class Product {
 
 const p1 = new Product("Book", 10);
 const p2 = new Product("Book 2", 20);
+
+class Printer {
+  message = "This works!";
+
+  showMessage() {
+    console.log(this.message);
+  }
+}
+
+const p = new Printer();
+
+const button = document.querySelector("button")!;
+button.addEventListener("click", p.showMessage.bind(p));
