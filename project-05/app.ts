@@ -102,9 +102,24 @@ class Product {
 const p1 = new Product("Book", 10);
 const p2 = new Product("Book 2", 20);
 
+// function Autobind(_: any, __: string, descriptor: PropertyDecorator) {
+//   const originalMethod = descriptor.value;
+//   const adjDescriptor: PropertyDecorator = {
+//     configurable: true,
+//     enumerable: false,
+//     get() {
+//       const boundFn = originalMethod.bind(this);
+//       return boundFn;
+//     },
+//   };
+
+//   return adjDescriptor;
+// }
+
 class Printer {
   message = "This works!";
 
+  // @Autobind
   showMessage() {
     console.log(this.message);
   }
