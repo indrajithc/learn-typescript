@@ -41,7 +41,7 @@ class Person {
 
 const person = new Person();
 
-console.log(person);
+// console.log(person);
 
 // ---
 
@@ -130,8 +130,71 @@ const p = new Printer();
 const button = document.querySelector("button")!;
 button.addEventListener("click", p.showMessage.bind(p));
 
+interface ValidatorConfig {
+  [property: string]: {
+    [validatableProp: string]: string[]; // ["required", "positive"]
+  };
+}
+
+const registeredValidators: ValidatorConfig = {};
+
+function Required(
+  target: any,
+  meta: {
+    name: string;
+  },
+) {
+  console.log({
+    target,
+    meta,
+  });
+  const propName = meta.name;
+  registeredValidators[target?.constructor?.name] = {
+    [propName]: ["required"],
+  };
+}
+
+function PositiveNumber(
+  target: any,
+  meta: {
+    name: string;
+  },
+) {
+  console.log({
+    target,
+    meta,
+  });
+  const propName = meta.name;
+  registeredValidators[target?.constructor?.name] = {
+    [propName]: ["positive"],
+  };
+}
+
+function validate(obj: any) {
+  console.log({ registeredValidators, obj });
+  const objValidatorConfig = registeredValidators[obj.constructor.name];
+  if (!objValidatorConfig) {
+    return true;
+  }
+
+  for (const prop in objValidatorConfig) {
+    for (const validator of objValidatorConfig[prop]) {
+      switch (validator) {
+        case "required":
+          return !!obj[prop];
+        case "positive":
+          return obj[prop] > 0;
+      }
+    }
+  }
+  return true;
+}
+
 class Course {
+  @Required
   title: string;
+
+  @PositiveNumber
   price: number;
 
   constructor(t: string, p: number) {
@@ -141,6 +204,7 @@ class Course {
 }
 
 const courseForm = document.querySelector("form")!;
+console.log({ courseForm });
 
 courseForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -152,5 +216,11 @@ courseForm.addEventListener("submit", (event) => {
   const price = +priceEl.value;
 
   const createdCourse = new Course(title, price);
+
+  if (!validate(createdCourse)) {
+    alert("Invalid input, please try again!");
+    return;
+  }
+
   console.log(createdCourse);
 });
