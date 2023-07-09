@@ -2,9 +2,9 @@
 
 function Logger(logString: string) {
   console.log("LOGGER FACTORY");
-  return function (constructor: Function, t: object) {
+  return function (constructor: Function) {
     console.log(logString);
-    console.log(constructor, t);
+    console.log(constructor);
   };
 }
 
@@ -12,7 +12,6 @@ function WithTemplate(template: string, hookId: string) {
   console.log("TEMPLATE FACTORY");
   return function <T extends { new (..._: any[]): { name: string } }>(
     originalConstructor: T,
-    _: object,
   ) {
     return class extends originalConstructor {
       constructor(..._: any[]) {
@@ -130,42 +129,27 @@ const p = new Printer();
 const button = document.querySelector("button")!;
 button.addEventListener("click", p.showMessage.bind(p));
 
+// ---
+
 interface ValidatorConfig {
   [property: string]: {
-    [validatableProp: string]: string[]; // ["required", "positive"]
+    [validatableProp: string]: string[]; // ['required', 'positive']
   };
 }
 
 const registeredValidators: ValidatorConfig = {};
 
-function Required(
-  target: any,
-  meta: {
-    name: string;
-  },
-) {
-  console.log({
-    target,
-    meta,
-  });
-  const propName = meta.name;
+function Required(target: any, propName: string) {
+  console.log({ target });
   registeredValidators[target?.constructor?.name] = {
+    ...registeredValidators[target?.constructor?.name],
     [propName]: ["required"],
   };
 }
 
-function PositiveNumber(
-  target: any,
-  meta: {
-    name: string;
-  },
-) {
-  console.log({
-    target,
-    meta,
-  });
-  const propName = meta.name;
+function PositiveNumber(target: any, propName: string) {
   registeredValidators[target?.constructor?.name] = {
+    ...registeredValidators[target?.constructor?.name],
     [propName]: ["positive"],
   };
 }
@@ -176,18 +160,20 @@ function validate(obj: any) {
   if (!objValidatorConfig) {
     return true;
   }
-
+  let isValid = true;
   for (const prop in objValidatorConfig) {
     for (const validator of objValidatorConfig[prop]) {
       switch (validator) {
         case "required":
-          return !!obj[prop];
+          isValid = isValid && !!obj[prop];
+          break;
         case "positive":
-          return obj[prop] > 0;
+          isValid = isValid && obj[prop] > 0;
+          break;
       }
     }
   }
-  return true;
+  return isValid;
 }
 
 class Course {
