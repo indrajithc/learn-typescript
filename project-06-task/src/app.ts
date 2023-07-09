@@ -151,13 +151,16 @@ class ProjectList {
   }
 
   private renderProjects() {
-    const listeEl = document.getElementById(
+    const listEl = document.getElementById(
       `${this.type}-project-list`,
     )! as HTMLUListElement;
+
+    listEl.innerHTML = "";
+
     for (const prjItem of this.assignedProjects) {
       const listItem = document.createElement("li");
       listItem.textContent = prjItem.title;
-      listeEl?.appendChild(listItem);
+      listEl?.appendChild(listItem);
     }
   }
 
