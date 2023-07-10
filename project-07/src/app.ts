@@ -1,7 +1,16 @@
-import _ from "lodash";
+import { Product } from "./product.model";
 
-declare var GLOBAL: any;
+const products = [
+  { title: "A Carpet", price: 29.44 },
+  { title: "A Book", price: 10.44 },
+];
 
-console.log(_.shuffle([1, 2, 3, 4, 5]));
+// const p1 = new Product("A Book", 3.22);
 
-console.log(GLOBAL);
+const loadedProducts = products.map((prod) => {
+  return new Product(prod.title, prod.price);
+});
+
+for (const prod of loadedProducts) {
+  console.log(prod.getInformation());
+}
