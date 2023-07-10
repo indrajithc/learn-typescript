@@ -1,29 +1,32 @@
-import { plainToClass } from "class-transformer";
-import "reflect-metadata";
-import { Product } from "./product.model";
-import { validate } from "class-validator";
+import axios from "axios";
+const form = document.querySelector("form")! as HTMLFormElement;
+const addressInput = document.getElementById("address")! as HTMLInputElement;
 
-const products = [
-  { title: "A Carpet", price: 29.44 },
-  { title: "A Book", price: 10.44 },
-];
+const GOOGLE_API_KEY = "AIzaSyCIaAc2c5M3VpbCH6PPq_guwy9lHuowXOss";
 
-const p1 = new Product("", 3.22);
-validate(p1).then((errors) => {
-  if (errors.length > 0) {
-    console.log(errors);
-  } else {
-    console.log(p1.getInformation());
-  }
-});
-// const p1 = new Product("A Book", 3.22);
+type GoogleGeocodingResponse = {
+  results: { geometry: { location: { lat: number; lng: number } } }[];
+  status: "OK" | "ZERO_RESULTS";
+};
 
-// const loadedProducts = products.map((prod) => {
-//   return new Product(prod.title, prod.price);
-// });
+function searchAddressHandler(event: Event) {
+  event.preventDefault();
+  const enteredAddress = addressInput.value;
 
-const loadedProducts = plainToClass(Product, products);
-
-for (const prod of loadedProducts) {
-  console.log(prod.getInformation());
+  axios
+    .get<GoogleGeocodingResponse>(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURI(
+        enteredAddress,
+      )}&key=${GOOGLE_API_KEY}`,
+    )
+    .then((response) => {
+      if (response.data.status !== "OK") {
+        throw new Error("Could not fetch location!");
+      }
+      const coordinates = response.data.results[0].geometry.location;
+      console.log({ coordinates });
+    })
+    .catch((error) => console.log(error));
 }
+
+form.addEventListener("submit", searchAddressHandler);
