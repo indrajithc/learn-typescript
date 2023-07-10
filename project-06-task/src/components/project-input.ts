@@ -1,4 +1,4 @@
-import { Component } from "./base-component.js";
+import Component from "./base-component.js";
 import { Validatable, validate } from "../util/validation.js";
 import { autobind } from "../decorators/autobind.js";
 import { projectState } from "../state/project-state.js";
