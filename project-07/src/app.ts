@@ -1,3 +1,5 @@
+import { plainToClass } from "class-transformer";
+import "reflect-metadata";
 import { Product } from "./product.model";
 
 const products = [
@@ -7,9 +9,11 @@ const products = [
 
 // const p1 = new Product("A Book", 3.22);
 
-const loadedProducts = products.map((prod) => {
-  return new Product(prod.title, prod.price);
-});
+// const loadedProducts = products.map((prod) => {
+//   return new Product(prod.title, prod.price);
+// });
+
+const loadedProducts = plainToClass(Product, products);
 
 for (const prod of loadedProducts) {
   console.log(prod.getInformation());
