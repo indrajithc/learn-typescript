@@ -18,16 +18,17 @@
     "url": "https://github.com/indrajithc/learn-typescript/issues"
   },
   "homepage": "https://github.com/indrajithc/learn-typescript#readme",
-  "devDependencies": {
-    "clean-webpack-plugin": "^4.0.0",
+  "dependencies": {
+    "class-transformer": "^0.5.1",
+    "lodash": "^4.17.21",
+    "reflect-metadata": "^0.1.13",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   },
-  "dependencies": {
-    "@types/lodash": "^4.14.195",
-    "lodash": "^4.17.21"
+  "devDependencies": {
+    "@types/lodash": "^4.14.195"
   }
 }
