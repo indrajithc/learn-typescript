@@ -1,15 +1,19 @@
 import React, { useRef} from "react";
 
-interface NewTodoProps {}
+interface NewTodoProps {
+  onAddTodo: (todoText: string) => void;
+}
 
-const NewTodo: React.FC<NewTodoProps> = () => {
+const NewTodo: React.FC<NewTodoProps> = ( props) => {
+
+  const { onAddTodo } = props;
 
 const textInputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const enteredText = textInputRef.current!.value;
-    console.log(enteredText)
+    onAddTodo(enteredText)
   };
 
   return (
