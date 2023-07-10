@@ -1,4 +1,4 @@
 .vscode
 
-*.js
+dist/*.js
 mode_modules
